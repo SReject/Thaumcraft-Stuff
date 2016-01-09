@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     
-    var thaumcraft = typeof window.thaumcraft !== "undefined" ? window.thaumcraft || {};
+    var thaumcraft = typeof window.thaumcraft !== "undefined" ? window.thaumcraft : {};
 
     function AspectList(base, compile) {
         this.baseList = base;
