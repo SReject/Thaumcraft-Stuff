@@ -1,3 +1,10 @@
+# `aspects.js`
+Default aspect registering for thaumcraft 4.2.2 and addons(addons are registered but not enabled)  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+
 #`thaumcrafthelper.js`
 Various Thaumcraft utilities stored under `thaumcraft`  
 &nbsp;  
@@ -117,19 +124,3 @@ Returns an object containing the centivis value of each aspect the node would pr
 >
 > `@modifier` - (`string` or `number`) - optional  
 > The modifer can be `fading`, `pale`, `bright`, `normal`, `-1`, 0, or `1`
-
-&nbsp;  
-&nbsp;  
-&nbsp;  
-&nbsp;  
-&nbsp;  
-&nbsp;  
-&nbsp;  
-&nbsp;  
-
-
-
-  
-  
-# `aspects.js`
-Default aspect registering for thaumcraft 4.2.2 and addons(addons are registered but not enabled)
