@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    
+
     var thaumcraft = typeof window.thaumcraft !== "undefined" ? window.thaumcraft : {};
 
     function AspectList(base, compile) {
@@ -117,7 +117,7 @@
             };
         }())
     };
-    
+
     thaumcraft.AspectList = AspectList;
     thaumcraft.nodeToCentivis = (function () {
         function compare(centivis, breakdown, amount) {
@@ -135,7 +135,9 @@
                 aspectList = args.length == 3 ? args.shift() : this.aspects,
                 node = args[0],
                 modifier = args[1],
-                modAsString = String(modifier).toLowerCase();
+                modAsString = String(modifier).toLowerCase(),
+                aspect,
+                centivis = {};
 
             if (!aspectList) {
                 throw new Error("No aspect list found");
@@ -144,11 +146,6 @@
                 throw new Error("Aspect list not compiled");
             }
 
-            for (aspect in node) {
-                if (node.hasOwnProperty(aspect)) {
-                    centivis = compare(centivis, aspectList.breakdown(aspect), node[aspect]);
-                }
-            }
             if (modifier === -1 || modAsString === "pale" || modAsString === "fading") {
                 modifier = .8;
             } else if (modifier === 1 || modAsString === "bright") {
@@ -156,7 +153,13 @@
             } else {
                 modifier = 1;
             }
-            
+
+            for (aspect in node) {
+                if (node.hasOwnProperty(aspect)) {
+                    centivis = compare(centivis, aspectList.breakdown(aspect), node[aspect]);
+                }
+            }
+
             for (aspect in centivis) {
                 if (centivis.hasOwnProperty(aspect)) {
                     centivis[aspect] = Math.floor(Math.sqrt(centivis[aspect]) * modifier);
@@ -165,6 +168,6 @@
             return centivis;
         };
     }());
-    
+
     window.thaumcraft = thaumcraft;
 }());
