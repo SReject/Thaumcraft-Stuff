@@ -46,11 +46,11 @@ Enables the specified addon for recompilation
 ####`AspectList.addonDisable(@name, @compile)`
 Disables the specified addon for recompilation
 
-> `@name` - (`string`) - required
-> name of previously added addon
->
-> `@compile` - (`boolean`) - optional
-> if not `false` the aspect list will be recompiled if the addon was not already disabled; defaults to `true`
+> `@name` - (`string`) - required  
+> name of previously added addon  
+>  
+> `@compile` - (`boolean`) - optional  
+> if not `false` the aspect list will be recompiled if the addon was not already disabled; defaults to `true`  
 
 ####`AspectList.compile()`
 Recompiles the aspect list
@@ -58,31 +58,31 @@ Recompiles the aspect list
 ####`AspectList.has(@aspect)` - (`boolean`)
 Returns `true` or `false` if the specified aspect is in the compiled aspect list
 
-> `@aspect` - (`string`) - required
+> `@aspect` - (`string`) - required  
 > Aspect to check
 
-####`AspectList.components(@aspect)` - (`boolean` or `array`)
+####`AspectList.components(@aspect)` - (`boolean` or `array`)  
 Returns the components of the specified aspect or `false` if primal aspect
 
-> `@aspect` - (`string`) - required
+> `@aspect` - (`string`) - required  
 > Aspect to check
 
 ####`AspectList.breakdown(@aspect)` - (`object`)
 Returns an object containing the primals(keys) that make up the specified aspect and the amount of each(value)
 
-> `@aspect` - (`string`) - required
+> `@aspect` - (`string`) - required  
 > Aspect to break down
 
 ####`thaumcraft.nodeToCentivis(@aspectList, @node, @modifier)` - (`object`)
 Returns an object containing the centivis value of each aspect the node would produce if it is energized
 
-> `@aspectList` - (`thaumcraft.AspectList`) - optional
+> `@aspectList` - (`thaumcraft.AspectList`) - optional  
 > The aspect list to use when breaking the compound aspects down. If not specified it will attempt to use `thuamcraft.aspects`
 >
-> `@node` - (`object`) - required
+> `@node` - (`object`) - required  
 > An object containing each aspect the node has as keys, and the amount of vis as the values
 >
-> `@modifier` - (`string` or `number) - optional
+> `@modifier` - (`string` or `number`) - optional  
 > The modifer can be `fading`, `pale`, `bright`, `normal`, `-1`, 0, or `1`
 
 
