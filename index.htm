@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SReject's Thaumcraft Stuff - Centivis Calculator</title>
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+        <link rel="stylesheet" type="text/css" href="./styles/centivis.css" />
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="./scripts/thaumcrafthelper.js"></script>
+        <script src="./scripts/aspects.js"></script>
+        <script src="./scripts/centivis.js"></script>
+    </head>
+    <body>
+        <header>Thaumcraft 4.2.2 Centivis Calculator</header>
+        <div class="wrapper">
+            <div>
+                <div class="heading">About</div>
+                <div>
+                    After searching around for a centivis calculator and coming up empty handed I decided to write this page. Without going into too much detail it follows the mechanics of Thaumcrafts 4.2.x for centivis calculations. If you find a bug please report it as an issue to the github repo.
+                    <noscript><br/><br/>Javascript is required for this calculator to function.</noscript>
+                </div>
+            </div>
+            <div>
+                <div class="heading">Calculator</div>
+                <div>
+                    <div class="section" id="addons">
+                        <div class="subhead">Addons</div>
+                        <div>Select all applicable Thaumcraft addons:<br>
+                            <div id="addonlist"></div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="subhead">Node Type</div>
+                        <div>Select the type of node:<br>
+                            <div>
+                                <input type="radio" id="nodetype_fading" name="nodetype" value="fading"><label for="nodetype_normal">Fading</label><br>
+                                <input type="radio" id="nodetype_pale" name="nodetype" value="pale"><label for="nodetype_normal">Pale</label><br>
+                                <input type="radio" id="nodetype_normal" name="nodetype" value="normal" checked><label for="nodetype_normal">Normal</label><br>
+                                <input type="radio" id="nodetype_bright" name="nodetype" value="bright"><label for="nodetype_normal">Bright</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="subhead">Aspects</div>
+                        <div>Input each aspect and its vis amount:<br>
+                            <div>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Aspect</th>
+                                            <th>Via</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="aspectListDisplay"><tr>
+                                            <td><select id="aspectSelect"></select></td>
+                                            <td><input id="aspectVis" /></td>
+                                            <td><button id="aspectAdd">Add</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section" id="result">
+                        <div class="subhead">Centivis</div>
+                        <div id="resultList">
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="nohead">
+                            <button id="calc">Calculate</button>
+                            <button id="resetList">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

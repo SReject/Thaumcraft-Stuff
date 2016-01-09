@@ -1,0 +1,70 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  background-color: #e8e8e8;
+}
+header {
+    min-width: 1028px;
+    padding: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    background-color: #282828;
+    font-weight: bold;
+    font-size: 30px;
+    color: #fff;
+}
+.wrapper {
+    width: 1028px;
+    margin: 0 auto;
+    padding: 50px 0px 50px 0px;
+}
+.wrapper > div {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+.wrapper > div:last-child {
+  margin-bottom: 0px;
+}
+.wrapper > div > .heading {
+    border-bottom: 1px solid #ccc;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.wrapper > div > div:not(.heading) {
+    margin-left: 20px;
+    margin-right: 20px;
+    color: #666;
+}
+.section {
+  margin-top: 20px;
+}
+.section .subhead {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+.section div:not(.subhead):not(.nohead) {
+    margin-left: 20px;
+}
+#result, #addons {
+    display: none;
+}
+
+label {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+td {
+  text-align: left;
+}
