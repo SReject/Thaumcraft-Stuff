@@ -1,7 +1,7 @@
-# `thaumcrafthelper.js`
+#`thaumcrafthelper.js`
 Various Thaumcraft utilities stored under `thaumcraft`  
 
-## `thaumcraft.AspectList(@baseAspects, @compile)`
+####`thaumcraft.AspectList(@baseAspects, @compile)`
 Returns a new AspectList object
 
 > `@baseAspect` - (`object`) - required
@@ -12,7 +12,7 @@ Returns a new AspectList object
 
 
 
-## `AspectList.addonAdd(@name, @aspects, @options)`
+####`AspectList.addonAdd(@name, @aspects, @options)`
 Adds the addon's aspects to the aspect pool
 
 > `@name` - (`string`) - required
@@ -33,7 +33,7 @@ Adds the addon's aspects to the aspect pool
 
 
 
-## `AspectList.addonEnable(@name, @compile)`
+####`AspectList.addonEnable(@name, @compile)`
 Enables the specified addon for recompilation
 
 > `@name` - (`string`) - required
@@ -43,7 +43,7 @@ Enables the specified addon for recompilation
 > if not `false` the aspect list will be recompiled if the addon was not already enabled; defaults to `true`
 
 
-## `AspectList.addonDisable(@name, @compile)`
+####`AspectList.addonDisable(@name, @compile)`
 Disables the specified addon for recompilation
 
 > `@name` - (`string`) - required
@@ -52,28 +52,28 @@ Disables the specified addon for recompilation
 > `@compile` - (`boolean`) - optional
 > if not `false` the aspect list will be recompiled if the addon was not already disabled; defaults to `true`
 
-## `AspectList.compile()`
+####`AspectList.compile()`
 Recompiles the aspect list
 
-## `AspectList.has(@aspect)` - (`boolean`)
+####`AspectList.has(@aspect)` - (`boolean`)
 Returns `true` or `false` if the specified aspect is in the compiled aspect list
 
 > `@aspect` - (`string`) - required
 > Aspect to check
 
-## `AspectList.components(@aspect)` - (`boolean` or `array`)
+####`AspectList.components(@aspect)` - (`boolean` or `array`)
 Returns the components of the specified aspect or `false` if primal aspect
 
 > `@aspect` - (`string`) - required
 > Aspect to check
 
-## `AspectList.breakdown(@aspect)` - (`object`)
+####`AspectList.breakdown(@aspect)` - (`object`)
 Returns an object containing the primals(keys) that make up the specified aspect and the amount of each(value)
 
 > `@aspect` - (`string`) - required
 > Aspect to break down
 
-## `thaumcraft.nodeToCentivis(@aspectList, @node, @modifier)` - (`object`)
+####`thaumcraft.nodeToCentivis(@aspectList, @node, @modifier)` - (`object`)
 Returns an object containing the centivis value of each aspect the node would produce if it is energized
 
 > `@aspectList` - (`thaumcraft.AspectList`) - optional
