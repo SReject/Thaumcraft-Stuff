@@ -124,7 +124,7 @@
             var aspect;
             for (aspect in breakdown) {
                 if (breakdown.hasOwnProperty(aspect) && (!centivis.hasOwnProperty(aspect) || centivis[aspect] < amount)) {
-                    centivis[aspect] = amount;
+                    centivis[aspect] = Math.floor(amount);
                 }
             }
             return centivis;
