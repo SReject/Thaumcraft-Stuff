@@ -5,14 +5,15 @@ Default aspect registering for thaumcraft 4.2.2 and addons(addons are registered
 &nbsp;  
 &nbsp;  
 
-#`thaumcrafthelper.js`
-Various Thaumcraft utilities stored under `thaumcraft`  
+#`AspectList.js`
+Various utilities for managing thaumcraft Aspect Lists, component aspects, etc.  
+Stored as the main module export for node-esq environments, otherwise, stored under thaumcraft in the global scope
 &nbsp;  
 &nbsp;  
 &nbsp;  
 &nbsp;  
 
-####`thaumcraft.AspectList(@baseAspects, @compile)`
+####`AspectList(@baseAspects, @compile)`
 Returns a new AspectList object
 > `@baseAspect` - (`object`) - required  
 > an object containing aspect names as keys and either an array of component aspects or `false` for primals
