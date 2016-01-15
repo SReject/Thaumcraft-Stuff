@@ -1,13 +1,29 @@
-$( document ).ready(function () {
+$(document).ready(function () {
     var addons = thaumcraft.aspects.addons,
         addon,
         count = 0,
-        name, element,
+        name,
+        element,
         addonlist = $('#addonlist'),
         aspect,
         selectEle = $('#aspectSelect'),
         aspectList = thaumcraft.aspects.compiledList;
-
+        
+    function format(text) {
+        return String(text)[0].toUpperCase() + String(text).slice(1)
+    }
+    function relistAspects() {
+        var aspectList = thaumcraft.aspects.compiledList,
+            aspect;
+        selectEle.empty();
+        for (aspect in aspectList) {
+            if (aspectList.hasOwnProperty(aspect)) {
+                selectEle.append($("<option>").attr({
+                    "value": aspect
+                }).text(format(aspect)));
+            }
+        }
+    }
     for (addon in addons) {
         if (addons.hasOwnProperty(addon)) {
             count += 1;
@@ -24,28 +40,18 @@ $( document ).ready(function () {
                 } else {
                     thaumcraft.aspects.addonDisable(self.attr("value"), true);
                 }
+                relistAspects();
             });
             addonlist.append(ele);
-            addonlist.append($("<label>").attr({
-                "for": name
-            }).text(addon));
+            addonlist.append($("<label>").attr({"for": name}).text(addon));
             addonlist.append($("<br>"));
         }
     }
     if (count) {
         $('#addons').show();
     }
+    relistAspects();
     $('#calc').prop("disabled", true);
-    function format(text) {
-        return String(text)[0].toUpperCase() + String(text).slice(1)
-    }
-    for (aspect in aspectList) {
-        if (aspectList.hasOwnProperty(aspect)) {
-            selectEle.append($("<option>").attr({
-                "value": aspect
-            }).text(format(aspect)));
-        }
-    }
     $("#aspectAdd").on("click", function () {
         var aspect = $('#aspectSelect option:selected'),
             vis = $('#aspectVis').val(),
