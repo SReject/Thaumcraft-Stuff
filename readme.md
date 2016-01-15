@@ -1,5 +1,6 @@
 #`aspects.js`
-Default aspect registering for thaumcraft 4.2.2 and addons(addons are registered but not enabled)  
+Default aspect registering for thaumcraft 4.2.2 and addons(addons are registered but not enabled) 
+Generated AspectList exported if node-esq environment, otherwise its stored under thaumcraft.aspects
 &nbsp;  
 &nbsp;  
 &nbsp;  
