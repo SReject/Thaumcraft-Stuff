@@ -1,4 +1,6 @@
+/*jslint node:true*/
 (function () {
+    'use strict';
     var isNode = false, AspectList, aspects;
     try {
         if (module !== 'undefined' && this.module !== module && Object.prototype.toString.call(global.process) === '[object process]') {
@@ -11,7 +13,7 @@
         }
     }
     if (!isNode) {
-        if (!this.thaumcraft || !thus.thaumcraft.AspectList) {
+        if (!this.thaumcraft || !this.thaumcraft.AspectList) {
             throw new Error("AspectList constructor not found");
         }
         if (typeof this.thaumcraft.AspectList !== "function") {
@@ -19,7 +21,6 @@
         }
         AspectList = (this.thaumcraft = this.thaumcraft || {}).AspectList;
     }
-
     aspects = new AspectList({
         "aer":          false,
         "aqua":         false,
@@ -70,7 +71,6 @@
         "telum":        ["instrumentum", "ignis"],
         "tutamen":      ["instrumentum", "terra"]
     });
-
     aspects.addonAdd("Forbidden Magic", {
         "gula":         ["fames",        "vacuos"],
         "infernus":     ["ignis",        "praecantatio"],
@@ -80,27 +80,21 @@
         "invidia":      ["fames",        "sensus"],
         "ira":          ["ignis",        "telum"]
     }, {enable: false, compile: false});
-
     aspects.addonAdd("Magic Bees", {
         "tempus":       ["vacuos",       "ordo"]
     }, {enable: false, compile: false});
-
     aspects.addonAdd("Greg Tech", {
         "radio":        ["potentia",     "lux"],
         "magneto":      ["metallum",     "iter"],
         "nebrisum":     ["lucrum",       "perfodio"],
         "electrum":     ["potentia",     "machina"]
     }, {enable: false, compile: false});
-
     aspects.addonAdd("Elysium", {
         "sanctus":      ["spiritus",     "auram"]
     }, {enable: false, compile: false});
-
     aspects.addonAdd("Thaumic Warden", {
         "exubitor":     ["alienis",      "mortuus"]
     }, {enable: false, compile: false});
-    
-    
     if (isNode) {
         module.exports = aspects;
     } else {
