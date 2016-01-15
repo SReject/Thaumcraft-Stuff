@@ -1,4 +1,4 @@
-#(Centivis Calculator)[http://sreject.github.io/Thaumcraft-Stuff/]
+#[Centivis Calculator](http://sreject.github.io/Thaumcraft-Stuff/)
 Example usage of AspectList.js and aspect.js to calculate the centivis output of a node
 &nbsp;  
 &nbsp;  
