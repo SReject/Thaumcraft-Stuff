@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-
     var thaumcraft = typeof window.thaumcraft !== "undefined" ? window.thaumcraft : {};
 
     function AspectList(base, compile) {
@@ -156,7 +155,18 @@
 
             for (aspect in node) {
                 if (node.hasOwnProperty(aspect)) {
-                    centivis = compare(centivis, aspectList.breakdown(aspect), node[aspect]);
+                    if (typeof node[aspect] === "number") {
+                        node[aspect] = String(node[aspect]);
+                    }
+                    if (typeof node[aspect] === "string") {
+                        if (!/^\d+$/i.test(node[aspect])) {
+                            throw new Error("Invalid aspect value");
+                        }
+                        node[aspect] = parseInt(node[aspect], 10)
+                    } else {
+                        throw new Error("Invalid aspect value");
+                    }
+                    centivis = compare(centivis, aspectList.breakdown(aspect), node[aspect] = parseInt(node[aspect], 10));
                 }
             }
 
