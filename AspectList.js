@@ -1,6 +1,27 @@
-/*jslint node: true*/
+/*jslint node:true, browser:true*/
 (function () {
     'use strict';
+    var isNode = false, self = (function () {
+        try {
+            if (module !== 'undefined' && this.module !== module && Object.prototype.toString.call(global.process) === '[object process]') {
+                isNode = true;
+                return module.exports;
+            }
+        } catch (e) {}
+        var self = this;
+        if (self === undefined) {
+            try {
+                self = window;
+                if (!self) {
+                    throw new Error("Global object not `window`");
+                }
+            } catch (ee) {
+                throw new Error("Global object not found");
+            }
+        }
+        return self;
+    }());
+
     function AspectList(base, compile) {
         this.baseList = base;
         this.addons = {};
@@ -167,11 +188,12 @@
             };
         }())
     };
-    try {
-        if (module !== 'undefined' && this.module !== module && Object.prototype.toString.call(global.process) === '[object process]') {
-            module.exports = AspectList;
-            return;
+    if (isNode) {
+        self = AspectList;
+    } else {
+        if (!self.thaumcraft) {
+            self.thaumcraft = {};
         }
-    } catch (e) {}
-    (this.thaumcraft = this.thaumcraft || {}).AspectList = AspectList;
+        self.thaumcraft.AspectList = AspectList;
+    }
 }());

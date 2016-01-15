@@ -1,26 +1,40 @@
-/*jslint node:true*/
+/*jslint node:true, browser:true*/
 (function () {
     'use strict';
-    var isNode = false, AspectList, aspects;
-    try {
-        if (module !== 'undefined' && this.module !== module && Object.prototype.toString.call(global.process) === '[object process]') {
-            isNode = true;
-            AspectList = require('./AspectList.js');
+    var isNode = false, self = (function () {
+        var glob;
+        try {
+            if (module !== 'undefined' && this.module !== module && Object.prototype.toString.call(global.process) === '[object process]') {
+                isNode = true;
+                return module.exports;
+            }
+        } catch (e) {}
+        glob = this;
+        if (!glob) {
+            try {
+                glob = window;
+                if (!glob) {
+                    throw new Error("Global object not `window`");
+                }
+            } catch (ee) {
+                throw new Error("Global object not found");
+            }
         }
-    } catch (e) {
-        if (isNode) {
-            throw e;
-        }
-    }
-    if (!isNode) {
-        if (!this.thaumcraft || !this.thaumcraft.AspectList) {
+        return glob;
+    }()), AspectList, aspects;
+
+    if (isNode) {
+        AspectList = require('./AspectList.js');
+    } else {
+        if (!self.thaumcraft || !self.thaumcraft.AspectList) {
             throw new Error("AspectList constructor not found");
         }
-        if (typeof this.thaumcraft.AspectList !== "function") {
+        if (typeof self.thaumcraft.AspectList !== "function") {
             throw new Error("AspectList constructor invalid");
         }
-        AspectList = (this.thaumcraft = this.thaumcraft || {}).AspectList;
+        AspectList = self.thaumcraft.AspectList;
     }
+
     aspects = new AspectList({
         "aer":          false,
         "aqua":         false,
@@ -95,9 +109,10 @@
     aspects.addonAdd("Thaumic Warden", {
         "exubitor":     ["alienis",      "mortuus"]
     }, {enable: false, compile: false});
+
     if (isNode) {
         module.exports = aspects;
     } else {
-        this.thaumcraft.aspects = aspects;
+        self.thaumcraft.aspects = aspects;
     }
 }());
