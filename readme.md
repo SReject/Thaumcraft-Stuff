@@ -93,7 +93,7 @@ Disables the specified addon for recompilation
 &nbsp;  
 &nbsp;  
  
-####`AspectList.has(@aspect)` - (`boolean`)
+####`AspectList.has(@aspect)` - *boolean*
 Returns `true` or `false` if the specified aspect is in the compiled aspect list
 > `@aspect` - (`string`) - required  
 > Aspect to check
@@ -103,7 +103,7 @@ Returns `true` or `false` if the specified aspect is in the compiled aspect list
 &nbsp;  
 &nbsp;  
 
-####`AspectList.components(@aspect)` - (`boolean` or `array`)  
+####`AspectList.components(@aspect)` - *boolean* or *array*
 Returns the components of the specified aspect or `false` if primal aspect
 > `@aspect` - (`string`) - required  
 > Aspect to check
@@ -113,7 +113,7 @@ Returns the components of the specified aspect or `false` if primal aspect
 &nbsp;  
 &nbsp;  
 
-####`AspectList.breakdown(@aspect)` - (`object`)
+####`AspectList.breakdown(@aspect)` - *object*
 Returns an object containing the primals(keys) that make up the specified aspect and the amount of each(value)
 > `@aspect` - (`string`) - required  
 > Aspect to break down
@@ -123,10 +123,10 @@ Returns an object containing the primals(keys) that make up the specified aspect
 &nbsp;  
 &nbsp;  
 
-####`AspectList.nodeToCentivis(@node, @modifier)` - (`object`)
+####`AspectList.nodeToCentivis(@node, @modifier)` - *object*
 Returns an object containing the centivis value of each aspect the node would produce if it is energized
 > `@node` - (`object`) - required  
 > An object containing each aspect the node has as keys and the amount of vis as the values
 >
 > `@modifier` - (`string` or `number`) - optional  
-> The modifer can be `fading`, `pale`, `bright`, `normal`, `-1`, 0, or `1`
+> The modifer can be `fading`, `pale`, `bright`, `normal`, `-1`, `0`, or `1`
