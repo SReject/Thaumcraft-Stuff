@@ -1,9 +1,26 @@
 (function () {
-    if (!window.thaumcraft || !window.thaumcraft.hasOwnProperty("AspectList")) {
-        throw new Error("Aspect List constructor not found");
+    var isNode = false, AspectList, aspects;
+    try {
+        if (module !== 'undefined' && this.module !== module && Object.prototype.toString.call(global.process) === '[object process]') {
+            isNode = true;
+            AspectList = require('./AspectList.js');
+        }
+    } catch (e) {
+        if (isNode) {
+            throw e;
+        }
+    }
+    if (!isNode) {
+        if (!this.thaumcraft || !thus.thaumcraft.AspectList) {
+            throw new Error("AspectList constructor not found");
+        }
+        if (typeof this.thaumcraft.AspectList !== "function") {
+            throw new Error("AspectList constructor invalid");
+        }
+        AspectList = (this.thaumcraft = this.thaumcraft || {}).AspectList;
     }
 
-    var aspects = window.thaumcraft.aspects = new window.thaumcraft.AspectList({
+    aspects = new AspectList({
         "aer":          false,
         "aqua":         false,
         "ignis":        false,
@@ -82,4 +99,11 @@
     aspects.addonAdd("Thaumic Warden", {
         "exubitor":     ["alienis",      "mortuus"]
     }, {enable: false, compile: false});
+    
+    
+    if (isNode) {
+        module.exports = aspects;
+    } else {
+        this.thaumcraft.aspects = aspects;
+    }
 }());
