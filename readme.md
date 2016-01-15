@@ -57,8 +57,8 @@ Adds the addon's aspects to the aspect pool
 > > if `true` when the aspect list is recompiled the addon's aspects will be included; defaults to `true`
 > >
 > > `@options.compile` - (`boolean`) - optional  
-> > if not `false` the aspect list will be recompiled if the addon is enabled; defaults to `true`
-> >
+> > if not `false` the aspect list will be recompiled if the addon is enabled; defaults to `true`  
+
 &nbsp;  
 &nbsp;  
 &nbsp;  
@@ -71,7 +71,8 @@ Enables the specified addon for recompilation
 > Name of previously added addon
 >
 > `@compile` - (`boolean`) - optional  
-> if not `false` the aspect list will be recompiled if the addon was not already enabled; defaults to `true`
+> if not `false` the aspect list will be recompiled if the addon was not already enabled; defaults to `true`  
+
 &nbsp;  
 &nbsp;  
 &nbsp;  
@@ -85,6 +86,7 @@ Disables the specified addon for recompilation
 >  
 > `@compile` - (`boolean`) - optional  
 > if not `false` the aspect list will be recompiled if the addon was not already disabled; defaults to `true`  
+
 &nbsp;  
 &nbsp;  
 &nbsp;  
