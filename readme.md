@@ -1,3 +1,10 @@
+#(Centivis Calculator)[http://sreject.github.io/Thaumcraft-Stuff/]
+Example usage of AspectList.js and aspect.js to calculate the centivis output of a node
+&nbsp;  
+&nbsp;  
+&nbsp;  
+&nbsp;  
+
 #`aspects.js`
 Default aspect registering for thaumcraft 4.2.2 and addons(addons are registered but not enabled)  
 Generated AspectList exported if node-esq environment, otherwise its stored under thaumcraft.aspects
