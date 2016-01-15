@@ -125,13 +125,14 @@
                 return centivis;
             }
             return function (node, modifier) {
-                var modAsString = String(modifier).toLowerCase(), aspect, centivis = {};
+                var modAsString, aspect, centivis = {};
                 if (!this.compiled) {
                     throw new Error("AspectList not compiled");
                 }
-                if (modifier === "undefined") {
+                if (modifier === undefined) {
                     modifier = 0;
                 }
+                modAsString = String(modifier).toLowerCase();
                 if (modifier === -1 || modAsString === "pale" || modAsString === "fading") {
                     modifier = 0.8;
                 } else if (modifier === 0 || modAsString === "normal") {
