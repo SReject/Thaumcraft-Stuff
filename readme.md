@@ -114,13 +114,10 @@ Returns an object containing the primals(keys) that make up the specified aspect
 &nbsp;  
 &nbsp;  
 
-####`thaumcraft.nodeToCentivis(@aspectList, @node, @modifier)` - (`object`)
+####`AspectList.nodeToCentivis(@node, @modifier)` - (`object`)
 Returns an object containing the centivis value of each aspect the node would produce if it is energized
-> `@aspectList` - (`thaumcraft.AspectList`) - optional  
-> The aspect list to use when breaking the compound aspects down. If not specified it will attempt to use `thuamcraft.aspects`
->
 > `@node` - (`object`) - required  
-> An object containing each aspect the node has as keys, and the amount of vis as the values
+> An object containing each aspect the node has as keys and the amount of vis as the values
 >
 > `@modifier` - (`string` or `number`) - optional  
 > The modifer can be `fading`, `pale`, `bright`, `normal`, `-1`, 0, or `1`
