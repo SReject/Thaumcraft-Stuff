@@ -1,5 +1,13 @@
 $( document ).ready(function () {
-    var addons = thaumcraft.aspects.addons, addon, count = 0, name, element, addonlist = $('#addonlist'), aspect, selectEle = $('#aspectSelect'), aspectList = thaumcraft.aspects.compiledList;
+    var addons = thaumcraft.aspects.addons,
+        addon,
+        count = 0,
+        name, element,
+        addonlist = $('#addonlist'),
+        aspect,
+        selectEle = $('#aspectSelect'),
+        aspectList = thaumcraft.aspects.compiledList;
+
     for (addon in addons) {
         if (addons.hasOwnProperty(addon)) {
             count += 1;
@@ -39,7 +47,11 @@ $( document ).ready(function () {
         }
     }
     $("#aspectAdd").on("click", function () {
-        var aspect = $('#aspectSelect option:selected'), vis = $('#aspectVis').val(), tbody = $('#aspectListDisplay'), row;
+        var aspect = $('#aspectSelect option:selected'),
+            vis = $('#aspectVis').val(),
+            tbody = $('#aspectListDisplay'),
+            row;
+
         if (!aspect.val() || !/^\d+$/.test(vis) || vis < 1) {
             console.log("invalid inputs");
             return;
@@ -78,7 +90,7 @@ $( document ).ready(function () {
         $('#aspectListDisplay > tr:not(:first-child)').each(function () {
             aspects[$(this).attr("aspect")] = $(this).attr("aspectVis");
         });
-        centivis = thaumcraft.nodeToCentivis(aspects, $('input[name=nodetype]:checked')[0].value);
+        centivis = thaumcraft.aspects.nodeToCentivis(aspects, $('input[name=nodetype]:checked')[0].value);
         for (aspect in centivis) {
             if (centivis.hasOwnProperty(aspect)) {
                 output += centivis[aspect] + "x " + format(aspect) + "<br>"

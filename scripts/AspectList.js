@@ -1,6 +1,26 @@
+/*jslint node:true, browser:true*/
 (function () {
     'use strict';
-    var thaumcraft = typeof window.thaumcraft !== "undefined" ? window.thaumcraft : {};
+    var isNode = false, self = (function () {
+        try {
+            if (module !== 'undefined' && this.module !== module && Object.prototype.toString.call(global.process) === '[object process]') {
+                isNode = true;
+                return module.exports;
+            }
+        } catch (e) {}
+        var self = this;
+        if (self === undefined) {
+            try {
+                self = window;
+                if (!self) {
+                    throw new Error("Global object not `window`");
+                }
+            } catch (ee) {
+                throw new Error("Global object not found");
+            }
+        }
+        return self;
+    }());
 
     function AspectList(base, compile) {
         this.baseList = base;
@@ -10,38 +30,37 @@
             this.compile();
         }
     }
-
     AspectList.prototype = {
         addonAdd: function (addonName, aspectList, options) {
             options = options || {};
             this.addons[addonName] = {
-                enable: options.enable || false,
+                enable: options.enable ? true : false,
                 aspects: aspectList
             };
-            if (options.compile !== false) {
+            if (options.compile) {
                 this.compile();
             }
             return this;
         },
-        addonEnable: function (addonName, rebuild) {
+        addonEnable: function (addonName, compile) {
             if (!this.addons.hasOwnProperty(addonName)) {
                 throw new Error("Unknown Addon: " + addonName);
             }
             if (!this.addons[addonName].enable) {
                 this.addons[addonName].enable = true;
-                if (rebuild) {
+                if (compile) {
                     this.compile();
                 }
             }
             return this;
         },
-        addonDisable: function (addonName, rebuild) {
+        addonDisable: function (addonName, compile) {
             if (!this.addons.hasOwnProperty(addonName)) {
                 throw new Error("Unknown Addon: " + addonName);
             }
             if (this.addons[addonName].enable) {
                 this.addons[addonName].enable = false;
-                if (rebuild) {
+                if (compile) {
                     this.compile();
                 }
             }
@@ -81,6 +100,8 @@
         has: function (aspect) {
             if (!this.compiled) {
                 throw new Error("Aspect list not compiled");
+            } else if (typeof aspect !== "string") {
+                throw new Error("Aspect not a string");
             }
             return this.compiledList.hasOwnProperty(aspect);
         },
@@ -97,7 +118,6 @@
             var primals, self;
             function walk(aspect) {
                 var parts = self.components(aspect);
-
                 if (parts !== false) {
                     walk(parts[0]);
                     walk(parts[1]);
@@ -114,70 +134,66 @@
                 walk(aspect);
                 return primals;
             };
-        }())
-    };
-
-    thaumcraft.AspectList = AspectList;
-    thaumcraft.nodeToCentivis = (function () {
-        function compare(centivis, breakdown, amount) {
-            var aspect;
-            for (aspect in breakdown) {
-                if (breakdown.hasOwnProperty(aspect) && (!centivis.hasOwnProperty(aspect) || centivis[aspect] < amount)) {
-                    centivis[aspect] = amount;
-                }
-            }
-            return centivis;
-        }
-
-        return function () {
-            var args = Array.prototype.slice.call(arguments),
-                aspectList = args.length == 3 ? args.shift() : this.aspects,
-                node = args[0],
-                modifier = args[1],
-                modAsString = String(modifier).toLowerCase(),
-                aspect,
-                centivis = {};
-
-            if (!aspectList) {
-                throw new Error("No aspect list found");
-            }
-            if (!aspectList.compiled) {
-                throw new Error("Aspect list not compiled");
-            }
-
-            if (modifier === -1 || modAsString === "pale" || modAsString === "fading") {
-                modifier = .8;
-            } else if (modifier === 1 || modAsString === "bright") {
-                modifier = 1.2;
-            } else {
-                modifier = 1;
-            }
-
-            for (aspect in node) {
-                if (node.hasOwnProperty(aspect)) {
-                    if (typeof node[aspect] === "number") {
-                        node[aspect] = String(node[aspect]);
+        }()),
+        nodeToCentivis: (function () {
+            function compare(centivis, breakdown, amount) {
+                var aspect;
+                for (aspect in breakdown) {
+                    if (breakdown.hasOwnProperty(aspect) && (!centivis.hasOwnProperty(aspect) || centivis[aspect] < amount)) {
+                        centivis[aspect] = amount;
                     }
-                    if (typeof node[aspect] === "string") {
-                        if (!/^\d+$/i.test(node[aspect])) {
+                }
+                return centivis;
+            }
+            return function (node, modifier) {
+                var modAsString, aspect, centivis = {};
+                if (!this.compiled) {
+                    throw new Error("AspectList not compiled");
+                }
+                if (modifier === undefined) {
+                    modifier = 0;
+                }
+                modAsString = String(modifier).toLowerCase();
+                if (modifier === -1 || modAsString === "pale" || modAsString === "fading") {
+                    modifier = 0.8;
+                } else if (modifier === 0 || modAsString === "normal") {
+                    modifier = 1;
+                } else if (modifier === 1 || modAsString === "bright") {
+                    modifier = 1.2;
+                } else {
+                    throw new Error("Invalid node modifier");
+                }
+                for (aspect in node) {
+                    if (node.hasOwnProperty(aspect)) {
+                        if (typeof node[aspect] === "number") {
+                            node[aspect] = String(node[aspect]);
+                        }
+                        if (typeof node[aspect] === "string") {
+                            if (!/^\d+$/i.test(node[aspect])) {
+                                throw new Error("Invalid aspect value");
+                            }
+                            node[aspect] = parseInt(node[aspect], 10);
+                        } else {
                             throw new Error("Invalid aspect value");
                         }
-                        node[aspect] = parseInt(node[aspect], 10)
-                    } else {
-                        throw new Error("Invalid aspect value");
+                        centivis = compare(centivis, this.breakdown(aspect), node[aspect]);
                     }
-                    centivis = compare(centivis, aspectList.breakdown(aspect), node[aspect] = parseInt(node[aspect], 10));
                 }
-            }
-
-            for (aspect in centivis) {
-                if (centivis.hasOwnProperty(aspect)) {
-                    centivis[aspect] = Math.floor(Math.sqrt(centivis[aspect]) * modifier);
+                for (aspect in centivis) {
+                    if (centivis.hasOwnProperty(aspect)) {
+                        centivis[aspect] = Math.floor(Math.sqrt(centivis[aspect]) * modifier);
+                    }
                 }
-            }
-            return centivis;
-        };
-    }());
-
-    window.thaumcraft = thaumcraft;
+                return centivis;
+            };
+        }())
+    };
+    if (isNode) {
+        self = AspectList;
+    } else {
+        if (!self.thaumcraft) {
+            self.thaumcraft = {};
+        }
+        self.thaumcraft.AspectList = AspectList;
+    }
 }());
