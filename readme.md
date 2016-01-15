@@ -34,14 +34,14 @@ Returns a new AspectList object
 &nbsp;  
 &nbsp;  
 
-####`AspectList.compile()`
+####`AspectList.compile()` - *self*
 Recompiles the aspect list
 &nbsp;  
 &nbsp;  
 &nbsp;  
 &nbsp;  
 
-####`AspectList.addonAdd(@name, @aspects, @options)`
+####`AspectList.addonAdd(@name, @aspects, @options)` - *self*
 Adds the addon's aspects to the aspect pool
 
 > `@name` - (`string`) - required  
@@ -59,13 +59,12 @@ Adds the addon's aspects to the aspect pool
 > > `@options.compile` - (`boolean`) - optional  
 > > if not `false` the aspect list will be recompiled if the addon is enabled; defaults to `true`
 > >
-
 &nbsp;  
 &nbsp;  
 &nbsp;  
 &nbsp;  
 
-####`AspectList.addonEnable(@name, @compile)`
+####`AspectList.addonEnable(@name, @compile)` - *self*
 Enables the specified addon for recompilation
 
 > `@name` - (`string`) - required  
@@ -73,13 +72,12 @@ Enables the specified addon for recompilation
 >
 > `@compile` - (`boolean`) - optional  
 > if not `false` the aspect list will be recompiled if the addon was not already enabled; defaults to `true`
-
 &nbsp;  
 &nbsp;  
 &nbsp;  
 &nbsp;  
 
-####`AspectList.addonDisable(@name, @compile)`
+####`AspectList.addonDisable(@name, @compile)` - *self*
 Disables the specified addon for recompilation
 
 > `@name` - (`string`) - required  
@@ -87,7 +85,6 @@ Disables the specified addon for recompilation
 >  
 > `@compile` - (`boolean`) - optional  
 > if not `false` the aspect list will be recompiled if the addon was not already disabled; defaults to `true`  
-
 &nbsp;  
 &nbsp;  
 &nbsp;  
